@@ -24,6 +24,9 @@ public class SceneEditor
       
       addCarAction.addOpposite(removeAction);
       addHouseAction.addOpposite(removeAction);
+      addCarAction.addOtherAdder(addHouseAction);
+      addHouseAction.addOtherAdder(addCarAction);
+      
       removeAction.addOpposite(addCarAction);
       removeAction.addOpposite(addHouseAction);
       

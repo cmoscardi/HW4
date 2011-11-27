@@ -10,6 +10,7 @@ public class AddObjectAction extends AbstractAction{
 		this.scene = scene;
 		this.actionType=actionType;
 		opposites = new ArrayList<RemoveObjectAction>();
+		others = new ArrayList<AddObjectAction>();
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -22,7 +23,8 @@ public class AddObjectAction extends AbstractAction{
 		}
 		
 		if(scene.getNumber()==SceneComponent.MAX_OBJECTS){
-			this.setEnabled(false);
+			setEnabled(false);
+			setOtherAdders(false);
 			setOpposites(true);
 		}
 		else if(scene.getNumber()>0){
@@ -40,12 +42,25 @@ public class AddObjectAction extends AbstractAction{
 		opposites.add(opposite);
 	}
 	
+	public void addOtherAdder(AddObjectAction other){
+		others.add(other);
+	}
+	
+	public void setOtherAdders(boolean b){
+		for(AddObjectAction a : others){
+			a.setEnabled(b);
+		}
+	}
+	
 	public void setOpposites(boolean b){
 		for (RemoveObjectAction a: opposites){
 			a.setEnabled(b);
 		}
 	}
 	
+	
+	
+	private ArrayList<AddObjectAction> others;
 	private ArrayList<RemoveObjectAction> opposites;
 	private final SceneComponent scene;
 	private final int actionType;

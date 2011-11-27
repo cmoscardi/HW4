@@ -7,6 +7,7 @@ import java.awt.geom.*;
 */
 public abstract class SelectableShape implements SceneShape
 {
+
    public void setSelected(boolean b)
    {
       selected = b;

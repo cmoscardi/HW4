@@ -22,6 +22,7 @@ public class HouseShape extends SelectableShape
 
    public void draw(Graphics2D g2)
    {
+	  int roofCenterX = width/2;
       Rectangle2D.Double base 
          = new Rectangle2D.Double(x, y + width, width, width);
 
@@ -30,7 +31,7 @@ public class HouseShape extends SelectableShape
          = new Point2D.Double(x, y + width);
       // The top of the roof
       Point2D.Double r2
-         = new Point2D.Double(x + width / 2, y);
+         = new Point2D.Double(x + roofCenterX, y);
       // The right bottom of the roof
       Point2D.Double r3
          = new Point2D.Double(x + width, y + width);

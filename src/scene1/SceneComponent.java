@@ -84,7 +84,16 @@ public class SceneComponent extends JComponent
             s.drawSelection(g2);
       }
    }
-
+   /**
+    * 
+    * @return the number of shapes
+    */
+   public int getNumber(){
+	   return shapes.size();
+   }
+   
    private ArrayList<SceneShape> shapes;
    private Point mousePoint;
+   public static final int DEFAULT_WIDTH = 50;
+   public static final int MAX_OBJECTS = 5;
 }

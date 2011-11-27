@@ -16,37 +16,34 @@ public class SceneEditor
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       final SceneComponent scene = new SceneComponent();
+    
+      //begin messing with actions -- STEP 2
+      AddObjectAction addCarAction = new AddObjectAction(scene, AddObjectAction.ADD_CAR);
+      AddObjectAction addHouseAction = new AddObjectAction(scene, AddObjectAction.ADD_HOUSE);
+      RemoveObjectAction removeAction = new RemoveObjectAction(scene);
+      
+      addCarAction.addOpposite(removeAction);
+      addHouseAction.addOpposite(removeAction);
+      removeAction.addOpposite(addCarAction);
+      removeAction.addOpposite(addHouseAction);
+      
+      addCarAction.setEnabled(true);
+      addHouseAction.setEnabled(true);
+      removeAction.setEnabled(false);
+      
+      //end setting up actions -- STEP 2
+      
+      JButton houseButton = new JButton(addHouseAction);
+      houseButton.setText("Add House");
+      
 
-      JButton houseButton = new JButton("House");
-      houseButton.addActionListener(new
-         ActionListener()
-         {
-            public void actionPerformed(ActionEvent event)
-            {
-               scene.add(new HouseShape(20, 20, 50));
-            }
-         });
-
-      JButton carButton = new JButton("Car");
-      carButton.addActionListener(new
-         ActionListener()
-         {
-            public void actionPerformed(ActionEvent event)
-            {
-               scene.add(new CarShape(20, 20, 50));
-            }
-         });
-
-      JButton removeButton = new JButton("Remove");
-      removeButton.addActionListener(new
-         ActionListener()
-         {
-            public void actionPerformed(ActionEvent event)
-            {
-               scene.removeSelected();
-            }
-         });
-
+      JButton carButton = new JButton(addCarAction);
+      carButton.setText("Add Car");
+      
+      JButton removeButton = new JButton(removeAction);
+      removeButton.setText("Remove Selected");
+      
+      
       JPanel buttons = new JPanel();
       buttons.add(houseButton);
       buttons.add(carButton);
